@@ -23,8 +23,6 @@
 **iconTolkitApp** is a small but powerful Python application designed to simplify the process of handling `.ico` icons. Whether you're building an app, customizing your desktop, or creating branding resources, this app provides a clean GUI to:
 
 - 🎨 Convert images to `.ico` files
-- 🧱 Extract icons from `.exe` or `.dll` files
-- 📁 Batch convert multiple images
 - ⚙️ Resize and optimize icons
 
 Built using `Tkinter` and packaged for Windows, it's perfect for quick workflows.
@@ -41,15 +39,7 @@ Built using `Tkinter` and packaged for Windows, it's perfect for quick workflows
 
 ---
 
-## 🛠️ Tech Stack
 
-- Python 3.11+
-- Tkinter (GUI)
-- `Pillow` (Image processing)
-- `pywin32` or `pefile` (Optional for icon extraction)
-- `PyInstaller` (For creating `.exe`)
-
----
 
 ## 📸 Screenshots
 
@@ -62,7 +52,7 @@ Built using `Tkinter` and packaged for Windows, it's perfect for quick workflows
 ## 📃 License
 
 This project is licensed under the MIT License.  
-📄 [View License](https://github.com/jentimanatol/iconTolkitApp/blob/main/LICENSE)
+
 
 ---
 
