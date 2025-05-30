@@ -21,17 +21,26 @@ class DropLabel(QLabel):
                 event.accept()
                 self.setStyleSheet("""
                     QLabel {
-                        border: 3px dashed #FF6B6B;
-                        border-radius: 15px;
+                        border: 3px dashed #ff1493;
+                        border-radius: 20px;
                         background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-                            stop:0 #fff3e0, stop:1 #ffebee);
-                        font-size: 18px;
-                        color: #FF6B6B;
-                        font-weight: bold;
-                        padding: 20px;
+                            stop:0 rgba(255, 20, 147, 0.3),
+                            stop:0.5 rgba(255, 107, 53, 0.3),
+                            stop:1 rgba(255, 215, 0, 0.3));
+                        font-size: 22px;
+                        color: #ff1493;
+                        font-weight: 900;
+                        padding: 30px;
+                        text-shadow: 
+                            0px 0px 15px rgba(255, 20, 147, 0.9),
+                            2px 2px 6px rgba(0, 0, 0, 0.8);
+                        letter-spacing: 3px;
+                        box-shadow: 
+                            inset 0 0 30px rgba(255, 20, 147, 0.4),
+                            0 0 30px rgba(255, 20, 147, 0.5);
                     }
                 """)
-                self.setText("🎯 Drop your image here!")
+                self.setText("♦ DROP TO FORGE ♦")
             else:
                 event.ignore()
         else:
@@ -40,18 +49,27 @@ class DropLabel(QLabel):
     def dragLeaveEvent(self, event):
         self.setStyleSheet("""
             QLabel {
-                border: 3px dashed #4CAF50;
-                border-radius: 15px;
+                border: 3px dashed #00f5ff;
+                border-radius: 20px;
                 background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-                    stop:0 #f8f9ff, stop:1 #e8f5e8);
-                font-size: 18px;
-                color: #2E7D32;
-                font-weight: bold;
-                padding: 20px;
+                    stop:0 rgba(0, 245, 255, 0.1),
+                    stop:0.5 rgba(138, 43, 226, 0.1),
+                    stop:1 rgba(255, 20, 147, 0.1));
+                font-size: 20px;
+                color: #00f5ff;
+                font-weight: 800;
+                padding: 30px;
+                text-shadow: 
+                    0px 0px 10px rgba(0, 245, 255, 0.8),
+                    2px 2px 4px rgba(0, 0, 0, 0.5);
+                letter-spacing: 3px;
+                box-shadow: 
+                    inset 0 0 20px rgba(0, 245, 255, 0.2),
+                    0 0 20px rgba(0, 245, 255, 0.3);
             }
         """)
         if not self.pixmap():
-            self.setText("📸 Drop your image here or click Upload!")
+            self.setText("▼ DRAG IMAGE HERE ▼")
     
     def dropEvent(self, event: QDropEvent):
         urls = event.mimeData().urls()
@@ -91,100 +109,175 @@ class Ico_maker(QMainWindow):
         main_layout.setSpacing(20)
         main_layout.setContentsMargins(30, 30, 30, 30)
         
-        # Set main window style
+        # Set main window style with 3D effects
         self.setStyleSheet("""
             QMainWindow {
                 background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-                    stop:0 #667eea, stop:1 #764ba2);
+                    stop:0 #1a1a2e, stop:0.3 #16213e, stop:0.7 #0f3460, stop:1 #533483);
             }
             QWidget {
                 background: transparent;
-                font-family: 'Segoe UI', Arial, sans-serif;
+                font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
             }
         """)
         
-        # Title label
-        title_label = QLabel("🎨 Professional Icon Converter")
+        # Title label with 3D effect
+        title_label = QLabel("⚡ ICON FORGE STUDIO ⚡")
         title_label.setAlignment(Qt.AlignCenter)
         title_label.setStyleSheet("""
             QLabel {
-                font-size: 28px;
-                font-weight: bold;
-                color: white;
-                margin: 10px;
-                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                font-size: 32px;
+                font-weight: 900;
+                color: #00f5ff;
+                margin: 15px;
+                text-shadow: 
+                    0px 0px 20px rgba(0, 245, 255, 0.8),
+                    0px 0px 40px rgba(0, 245, 255, 0.6),
+                    3px 3px 0px #1a1a2e,
+                    6px 6px 0px rgba(0, 0, 0, 0.3);
+                letter-spacing: 2px;
+                background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                    stop:0 rgba(0, 245, 255, 0.1), 
+                    stop:0.5 rgba(138, 43, 226, 0.1), 
+                    stop:1 rgba(255, 20, 147, 0.1));
+                border-radius: 20px;
+                padding: 20px;
+                border: 2px solid rgba(0, 245, 255, 0.3);
             }
         """)
         main_layout.addWidget(title_label)
         
-        # Image preview container
+        # Image preview container with glassmorphism
         preview_container = QWidget()
         preview_container.setStyleSheet("""
             QWidget {
-                background: rgba(255, 255, 255, 0.95);
-                border-radius: 20px;
-                border: 3px solid rgba(255, 255, 255, 0.3);
+                background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                    stop:0 rgba(255, 255, 255, 0.15),
+                    stop:0.5 rgba(255, 255, 255, 0.1),
+                    stop:1 rgba(255, 255, 255, 0.05));
+                border-radius: 25px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                backdrop-filter: blur(20px);
+                box-shadow: 
+                    0 8px 32px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
             }
         """)
         preview_layout = QVBoxLayout(preview_container)
-        preview_layout.setContentsMargins(20, 20, 20, 20)
+        preview_layout.setContentsMargins(25, 25, 25, 25)
         
-        # Image preview label with drag and drop
+        # Image preview label with 3D drop zone
         self.preview_label = DropLabel(self)
-        self.preview_label.setText("📸 Drop your image here or click Upload!")
+        self.preview_label.setText("▼ DRAG IMAGE HERE ▼")
         self.preview_label.setAlignment(Qt.AlignCenter)
         self.preview_label.setMinimumHeight(300)
         self.preview_label.setStyleSheet("""
             QLabel {
-                border: 3px dashed #4CAF50;
-                border-radius: 15px;
+                border: 3px dashed #00f5ff;
+                border-radius: 20px;
                 background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-                    stop:0 #f8f9ff, stop:1 #e8f5e8);
-                font-size: 18px;
-                color: #2E7D32;
-                font-weight: bold;
-                padding: 20px;
+                    stop:0 rgba(0, 245, 255, 0.1),
+                    stop:0.5 rgba(138, 43, 226, 0.1),
+                    stop:1 rgba(255, 20, 147, 0.1));
+                font-size: 20px;
+                color: #00f5ff;
+                font-weight: 800;
+                padding: 30px;
+                text-shadow: 
+                    0px 0px 10px rgba(0, 245, 255, 0.8),
+                    2px 2px 4px rgba(0, 0, 0, 0.5);
+                letter-spacing: 3px;
+                box-shadow: 
+                    inset 0 0 20px rgba(0, 245, 255, 0.2),
+                    0 0 20px rgba(0, 245, 255, 0.3);
             }
         """)
         preview_layout.addWidget(self.preview_label)
         main_layout.addWidget(preview_container)
         
-        # Status label
-        self.status_label = QLabel("✨ Ready to create amazing icons!")
+        # Status label with neon effect
+        self.status_label = QLabel("◆ READY TO FORGE ICONS ◆")
         self.status_label.setAlignment(Qt.AlignCenter)
         self.status_label.setStyleSheet("""
             QLabel {
                 font-size: 16px;
-                color: white;
-                font-weight: bold;
-                padding: 10px;
-                background: rgba(255, 255, 255, 0.2);
-                border-radius: 15px;
-                margin: 5px;
+                color: #ff1493;
+                font-weight: 700;
+                padding: 15px 25px;
+                background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                    stop:0 rgba(255, 20, 147, 0.2),
+                    stop:0.5 rgba(138, 43, 226, 0.2),
+                    stop:1 rgba(0, 245, 255, 0.2));
+                border-radius: 20px;
+                border: 1px solid rgba(255, 20, 147, 0.5);
+                margin: 10px;
+                text-shadow: 
+                    0px 0px 15px rgba(255, 20, 147, 0.8),
+                    2px 2px 4px rgba(0, 0, 0, 0.5);
+                letter-spacing: 1px;
+                box-shadow: 
+                    0 0 20px rgba(255, 20, 147, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
             }
         """)
         main_layout.addWidget(self.status_label)
         
-        # Settings container
+        # Info label for conversion details - NEW
+        self.info_label = QLabel("")
+        self.info_label.setAlignment(Qt.AlignCenter)
+        self.info_label.setWordWrap(True)
+        self.info_label.setStyleSheet("""
+            QLabel {
+                font-size: 14px;
+                color: #4CAF50;
+                font-weight: 600;
+                padding: 12px 20px;
+                background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                    stop:0 rgba(76, 175, 80, 0.15),
+                    stop:0.5 rgba(139, 195, 74, 0.15),
+                    stop:1 rgba(156, 204, 101, 0.15));
+                border-radius: 15px;
+                border: 1px solid rgba(76, 175, 80, 0.3);
+                margin: 5px;
+                text-shadow: 0px 0px 8px rgba(76, 175, 80, 0.6);
+                letter-spacing: 0.5px;
+                box-shadow: 
+                    0 0 15px rgba(76, 175, 80, 0.2),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
+        """)
+        self.info_label.hide()  # Initially hidden
+        main_layout.addWidget(self.info_label)
+        
+        # Settings container with 3D depth
         settings_container = QWidget()
         settings_container.setStyleSheet("""
             QWidget {
-                background: rgba(255, 255, 255, 0.9);
-                border-radius: 15px;
-                border: 2px solid rgba(255, 255, 255, 0.3);
+                background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                    stop:0 rgba(255, 255, 255, 0.12),
+                    stop:1 rgba(255, 255, 255, 0.08));
+                border-radius: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                box-shadow: 
+                    0 8px 32px rgba(0, 0, 0, 0.2),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.15);
             }
         """)
         settings_layout = QHBoxLayout(settings_container)
-        settings_layout.setContentsMargins(25, 20, 25, 20)
+        settings_layout.setContentsMargins(30, 25, 30, 25)
         
-        # Size options
-        size_label = QLabel("🎯 Icon Size:")
+        # Size options with futuristic style
+        size_label = QLabel("◈ SIZE MATRIX")
         size_label.setStyleSheet("""
             QLabel {
                 font-size: 16px;
-                font-weight: bold;
-                color: #2E7D32;
-                margin-right: 10px;
+                font-weight: 800;
+                color: #00f5ff;
+                margin-right: 15px;
+                text-shadow: 
+                    0px 0px 10px rgba(0, 245, 255, 0.8),
+                    2px 2px 4px rgba(0, 0, 0, 0.5);
+                letter-spacing: 1px;
             }
         """)
         
@@ -196,32 +289,48 @@ class Ico_maker(QMainWindow):
         self.size_selector.setStyleSheet("""
             QComboBox {
                 font-size: 14px;
-                padding: 8px 15px;
-                border: 2px solid #4CAF50;
-                border-radius: 10px;
-                background: white;
-                color: #2E7D32;
-                font-weight: bold;
-                min-width: 120px;
+                font-weight: 700;
+                padding: 12px 20px;
+                border: 2px solid #00f5ff;
+                border-radius: 15px;
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                    stop:0 rgba(0, 0, 0, 0.3),
+                    stop:1 rgba(0, 0, 0, 0.1));
+                color: #00f5ff;
+                min-width: 140px;
+                text-shadow: 0px 0px 8px rgba(0, 245, 255, 0.6);
+                box-shadow: 
+                    0 0 15px rgba(0, 245, 255, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
             }
             QComboBox::drop-down {
                 border: none;
-                background: #4CAF50;
-                border-radius: 5px;
-                margin: 2px;
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                    stop:0 #00f5ff, stop:1 #008b8b);
+                border-radius: 8px;
+                margin: 3px;
+                box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
             }
             QComboBox::down-arrow {
                 image: none;
-                border: 5px solid transparent;
-                border-top: 8px solid white;
-                margin-right: 5px;
+                border: 6px solid transparent;
+                border-top: 10px solid #1a1a2e;
+                margin-right: 8px;
+            }
+            QComboBox:hover {
+                box-shadow: 
+                    0 0 25px rgba(0, 245, 255, 0.5),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
             }
             QComboBox QAbstractItemView {
-                border: 2px solid #4CAF50;
-                border-radius: 10px;
-                background: white;
-                selection-background-color: #E8F5E8;
-                color: #2E7D32;
+                border: 2px solid #00f5ff;
+                border-radius: 15px;
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                    stop:0 #1a1a2e, stop:1 #0f3460);
+                selection-background-color: rgba(0, 245, 255, 0.3);
+                color: #00f5ff;
+                font-weight: 700;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
             }
         """)
         
@@ -235,61 +344,92 @@ class Ico_maker(QMainWindow):
         button_layout = QHBoxLayout()
         button_layout.setSpacing(20)
         
-        # Upload button
-        self.upload_btn = QPushButton("📁 Upload Image")
+        # Upload button with 3D cyberpunk style
+        self.upload_btn = QPushButton("▲ UPLOAD IMAGE")
         self.upload_btn.clicked.connect(self.upload_file)
         self.upload_btn.setStyleSheet("""
             QPushButton {
                 font-size: 16px;
-                font-weight: bold;
-                padding: 15px 30px;
+                font-weight: 800;
+                padding: 18px 35px;
                 border: none;
-                border-radius: 15px;
+                border-radius: 20px;
                 background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-                    stop:0 #FF6B6B, stop:1 #FF8E53);
+                    stop:0 #ff6b35, stop:0.5 #f7931e, stop:1 #ff4757);
                 color: white;
-                text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+                text-shadow: 
+                    0px 0px 10px rgba(255, 107, 53, 0.8),
+                    2px 2px 4px rgba(0, 0, 0, 0.6);
+                letter-spacing: 2px;
+                box-shadow: 
+                    0 8px 25px rgba(255, 107, 53, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
             }
             QPushButton:hover {
                 background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-                    stop:0 #FF8E53, stop:1 #FF6B6B);
-                transform: translateY(-2px);
+                    stop:0 #ff8b55, stop:0.5 #ffb33e, stop:1 #ff6777);
+                box-shadow: 
+                    0 12px 35px rgba(255, 107, 53, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+                transform: translateY(-3px);
             }
             QPushButton:pressed {
                 background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-                    stop:0 #E55A5A, stop:1 #E57C42);
+                    stop:0 #e55a32, stop:0.5 #e6821b, stop:1 #e63946);
+                transform: translateY(1px);
+                box-shadow: 
+                    0 4px 15px rgba(255, 107, 53, 0.3),
+                    inset 0 -2px 0 rgba(0, 0, 0, 0.3);
             }
         """)
         button_layout.addWidget(self.upload_btn)
         
-        # Convert and save button
-        self.save_btn = QPushButton("💾 Convert & Save as ICO")
+        # Convert and save button with holographic effect
+        self.save_btn = QPushButton("◆ FORGE ICO FILE")
         self.save_btn.clicked.connect(self.save_file)
         self.save_btn.setEnabled(False)  # Disable until image is selected
         self.save_btn.setStyleSheet("""
             QPushButton {
                 font-size: 16px;
-                font-weight: bold;
-                padding: 15px 30px;
+                font-weight: 800;
+                padding: 18px 35px;
                 border: none;
-                border-radius: 15px;
+                border-radius: 20px;
                 background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-                    stop:0 #4CAF50, stop:1 #45a049);
+                    stop:0 #00f5ff, stop:0.5 #8a2be2, stop:1 #ff1493);
                 color: white;
-                text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+                text-shadow: 
+                    0px 0px 15px rgba(0, 245, 255, 0.8),
+                    2px 2px 4px rgba(0, 0, 0, 0.6);
+                letter-spacing: 2px;
+                box-shadow: 
+                    0 8px 25px rgba(0, 245, 255, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
             }
             QPushButton:hover:enabled {
                 background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-                    stop:0 #45a049, stop:1 #4CAF50);
-                transform: translateY(-2px);
+                    stop:0 #20f5ff, stop:0.5 #aa4bf2, stop:1 #ff34a3);
+                box-shadow: 
+                    0 12px 35px rgba(0, 245, 255, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+                transform: translateY(-3px);
             }
             QPushButton:pressed:enabled {
                 background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-                    stop:0 #3d8b40, stop:1 #3a7f3d);
+                    stop:0 #00d4e6, stop:0.5 #7a23c8, stop:1 #e61279);
+                transform: translateY(1px);
+                box-shadow: 
+                    0 4px 15px rgba(0, 245, 255, 0.3),
+                    inset 0 -2px 0 rgba(0, 0, 0, 0.3);
             }
             QPushButton:disabled {
-                background: #cccccc;
-                color: #666666;
+                background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                    stop:0 #666666, stop:1 #444444);
+                color: #999999;
+                box-shadow: none;
+                text-shadow: none;
             }
         """)
         button_layout.addWidget(self.save_btn)
@@ -306,6 +446,9 @@ class Ico_maker(QMainWindow):
             self.source_file = file_path
             self.status_label.setText(f"🎉 Selected: {os.path.basename(file_path)} - Ready to convert!")
             self.save_btn.setEnabled(True)
+            
+            # Hide info label when new image is loaded
+            self.info_label.hide()
             
             # Display preview with better styling
             pixmap = QPixmap(file_path)
@@ -395,14 +538,42 @@ class Ico_maker(QMainWindow):
                 # Save as ICO
                 icon_image.save(save_path, format='ICO', sizes=sizes)
                 
+                # Update status and show info in main window instead of popup
                 self.status_label.setText(f"✅ Successfully saved: {os.path.basename(save_path)}")
-                QMessageBox.information(self, "🎉 Success!", 
-                                        f"🎨 Image successfully converted to ICO format!\n\n"
-                                        f"📊 Created with {len(sizes)} size variants:\n"
-                                        f"📁 Saved as: {os.path.basename(save_path)}")
+                
+                # Show detailed info in the new info label
+                size_variants = ', '.join([f"{s[0]}×{s[1]}" for s in sizes])
+                self.info_label.setText(
+                    f"🎨 Image successfully converted to ICO format!\n"
+                    f"📊 Created with {len(sizes)} size variants: {size_variants}\n"
+                    f"📁 Saved as: {os.path.basename(save_path)}"
+                )
+                self.info_label.show()
+                
             except Exception as e:
                 self.status_label.setText("❌ Error occurred during conversion")
-                QMessageBox.critical(self, "❌ Error", f"An error occurred:\n\n{str(e)}")
+                self.info_label.setText(f"❌ Conversion failed: {str(e)}")
+                self.info_label.setStyleSheet("""
+                    QLabel {
+                        font-size: 14px;
+                        color: #f44336;
+                        font-weight: 600;
+                        padding: 12px 20px;
+                        background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                            stop:0 rgba(244, 67, 54, 0.15),
+                            stop:0.5 rgba(229, 57, 53, 0.15),
+                            stop:1 rgba(211, 47, 47, 0.15));
+                        border-radius: 15px;
+                        border: 1px solid rgba(244, 67, 54, 0.3);
+                        margin: 5px;
+                        text-shadow: 0px 0px 8px rgba(244, 67, 54, 0.6);
+                        letter-spacing: 0.5px;
+                        box-shadow: 
+                            0 0 15px rgba(244, 67, 54, 0.2),
+                            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                    }
+                """)
+                self.info_label.show()
                 import traceback
                 traceback.print_exc()
 
