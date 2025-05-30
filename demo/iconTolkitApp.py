@@ -98,12 +98,9 @@ class Ico_maker(QMainWindow):
             QMessageBox.warning(self, "Warning", "Please select an image file first!")
             return
             
-        # Get the current selected size for the filename
-        current_size = self.size_selector.currentText()
-        
-        # Set default filename to include the selected size
+        # Set default filename to app_icon.ico
         default_dir = os.path.dirname(self.source_file)
-        default_name = f"app_icon_{current_size}.ico"
+        default_name = "app_icon.ico"
         
         save_path, _ = QFileDialog.getSaveFileName(
             self, "Save ICO File", os.path.join(default_dir, default_name), 
