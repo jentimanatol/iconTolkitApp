@@ -63,13 +63,19 @@ jobs:
             exit 1
           }
 
-      - name: Zip the executable
+      - name: Rename executable with version
         run: |
-          Compress-Archive -Path dist/iconTolkitApp.exe -DestinationPath iconTolkitApp_v${{ github.ref_name }}.zip
+          Copy-Item "dist\iconTolkitApp.exe" "dist\iconTolkitApp_${{ github.ref_name }}.exe"
+
+      - name: Create ZIP archive
+        run: |
+          Compress-Archive -Path "dist\iconTolkitApp_${{ github.ref_name }}.exe" -DestinationPath "iconTolkitApp_${{ github.ref_name }}.zip"
 
       - name: Upload to GitHub Releases
         uses: softprops/action-gh-release@v1
         with:
-          files: iconTolkitApp_v${{ github.ref_name }}.zip
+          files: |
+            dist/iconTolkitApp_${{ github.ref_name }}.exe
+            iconTolkitApp_${{ github.ref_name }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
