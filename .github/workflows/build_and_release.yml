@@ -50,6 +50,7 @@ jobs:
             --icon=assets/app_icon_256×256.ico `
             --name iconTolkitApp `
             --add-data "assets;assets" `
+            --add-data "assets/app_icon_32×32.ico;assets" `
             iconTolkitApp.py `
             --upx-dir upx-4.2.1-win64
 

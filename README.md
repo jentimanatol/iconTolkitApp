@@ -41,10 +41,8 @@
 
 ## 📸 Screenshots
 
-```markdown
 ![Main Window](assets/screenshots/screenshot_main.png)
-![Icon Export](assets/screenshots/screenshot_export.png)
-```
+
 
 
 
