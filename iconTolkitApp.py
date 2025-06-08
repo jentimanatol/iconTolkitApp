@@ -454,8 +454,7 @@ class Ico_maker(QMainWindow):
             "app_icon_32×32.ico",
             "app_icon_256×256.ico",
             # Absolute paths you provided
-            r"D:\git\python\IconTolkitApp\assets\app_icon_32×32.ico",
-            r"D:\git\python\IconTolkitApp\assets\app_icon_256×256.ico"
+       
         ]
         
         # Try each path until we find one that works
