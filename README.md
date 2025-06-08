@@ -25,9 +25,7 @@
 - 🎨 Convert images to `.ico` files
 - ⚙️ Resize and optimize icons
 
-Built using `Tkinter` and packaged for Windows, it's perfect for quick workflows.
 
----
 
 ## 🚀 Features
 
@@ -44,17 +42,11 @@ Built using `Tkinter` and packaged for Windows, it's perfect for quick workflows
 ## 📸 Screenshots
 
 ```markdown
-![Main Window](assets/screenshot_main.png)
-![Icon Export](assets/screenshot_export.png)
+![Main Window](assets/screenshots/screenshot_main.png)
+![Icon Export](assets/screenshots/screenshot_export.png)
 ```
 
 
-## 📃 License
-
-This project is licensed under the MIT License.  
-
-
----
 
 ## 🙋‍♂️ Author
 

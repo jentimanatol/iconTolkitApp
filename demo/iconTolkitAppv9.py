@@ -102,9 +102,6 @@ class Ico_maker(QMainWindow):
         self.setGeometry(200, 100, 900, 750)
         self.setMinimumSize(800, 650)
         
-        # Set window icon - try multiple paths for flexibility
-        self.set_window_icon()
-        
         # Create central widget and layout
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
@@ -439,46 +436,6 @@ class Ico_maker(QMainWindow):
         
         main_layout.addLayout(button_layout)
     
-    def set_window_icon(self):
-        """Set the window icon with multiple fallback paths"""
-        # List of possible icon paths to try
-        icon_paths = [
-            # Relative paths from the script directory
-            os.path.join(os.path.dirname(__file__), "assets", "app_icon_32×32.ico"),
-            os.path.join(os.path.dirname(__file__), "assets", "app_icon_256×256.ico"),
-            os.path.join(os.path.dirname(__file__), "app_icon_32×32.ico"),
-            os.path.join(os.path.dirname(__file__), "app_icon_256×256.ico"),
-            # Direct paths (if running from different directory)
-            "assets/app_icon_32×32.ico",
-            "assets/app_icon_256×256.ico",
-            "app_icon_32×32.ico",
-            "app_icon_256×256.ico",
-            # Absolute paths you provided
-            r"D:\git\python\IconTolkitApp\assets\app_icon_32×32.ico",
-            r"D:\git\python\IconTolkitApp\assets\app_icon_256×256.ico"
-        ]
-        
-        # Try each path until we find one that works
-        icon_set = False
-        for icon_path in icon_paths:
-            if os.path.exists(icon_path):
-                try:
-                    icon = QIcon(icon_path)
-                    if not icon.isNull():
-                        self.setWindowIcon(icon)
-                        print(f"✅ Successfully set window icon: {icon_path}")
-                        icon_set = True
-                        break
-                except Exception as e:
-                    print(f"❌ Failed to load icon from {icon_path}: {e}")
-                    continue
-        
-        if not icon_set:
-            print("⚠️ Could not find or load window icon file")
-            print("📁 Make sure one of these files exists:")
-            for path in icon_paths[:6]:  # Show first 6 relative paths
-                print(f"   - {path}")
-    
     def update_size(self, index):
         size_text = self.size_selector.currentText()
         self.icon_size = int(size_text.split("×")[0])
@@ -593,8 +550,6 @@ class Ico_maker(QMainWindow):
                 )
                 self.info_label.show()
                 
-
-
             except Exception as e:
                 self.status_label.setText("❌ Error occurred during conversion")
                 self.info_label.setText(f"❌ Conversion failed: {str(e)}")

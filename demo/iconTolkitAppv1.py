@@ -1,4 +1,6 @@
 # pip install PyQt5
+# pip install pillow
+
 import sys
 import os
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QVBoxLayout, 

@@ -29,13 +29,39 @@ jobs:
           Expand-Archive upx.zip -DestinationPath .
           echo "UPX extracted."
 
+      - name: Verify icon file exists
+        run: |
+          if (Test-Path "assets\app_icon_256×256.ico") {
+            echo "Icon file found: assets\app_icon_256×256.ico"
+            Get-Item "assets\app_icon_256×256.ico" | Select-Object Name, Length, LastWriteTime
+          } else {
+            echo "Warning: Icon file not found at assets\app_icon_256×256.ico"
+            echo "Available files in assets folder:"
+            if (Test-Path "assets") {
+              Get-ChildItem "assets" -Recurse
+            } else {
+              echo "Assets folder not found"
+            }
+          }
+
       - name: Build executable with PyInstaller and UPX
         run: |
           pyinstaller --noconfirm --onefile --windowed `
-            --icon=app_icon.ico `
+            --icon=assets/app_icon_256×256.ico `
             --name iconTolkitApp `
+            --add-data "assets;assets" `
             iconTolkitApp.py `
             --upx-dir upx-4.2.1-win64
+
+      - name: Verify executable was created
+        run: |
+          if (Test-Path "dist\iconTolkitApp.exe") {
+            echo "Executable created successfully"
+            Get-Item "dist\iconTolkitApp.exe" | Select-Object Name, Length, LastWriteTime
+          } else {
+            echo "Error: Executable was not created"
+            exit 1
+          }
 
       - name: Zip the executable
         run: |

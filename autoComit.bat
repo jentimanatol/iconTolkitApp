@@ -4,6 +4,6 @@ git commit -m " updted interface used CSS stiles "
 git push origin main
 
 :: === Tagging for GitHub Actions Release Build ===
-git tag v1.9
-git push origin v1.9
+git tag v2.0
+git push origin v2.0
 pause
